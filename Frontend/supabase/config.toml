@@ -1,0 +1,4 @@
+project_id = "omskulfhsanpcjppiinm"
+
+[functions.analyze-loan]
+verify_jwt = false
