@@ -1,272 +1,170 @@
-# LoanLens - Loan Analysis & Comparison Platform
+# LoanLens 🔍
 
-LoanLens is an AI-powered web application that analyzes loan documents and provides fairness assessments, helping users make informed borrowing decisions. The platform uses Google's Gemini AI to extract key loan terms and evaluate them against predatory lending practices.
+**AI-Powered Loan Document Analysis Platform**
 
-## 📋 Table of Contents
+LoanLens helps borrowers understand their loan documents by using artificial intelligence to analyze terms, identify predatory practices, and compare multiple loan offers side-by-side.
 
-- [Features](#-features)
-- [Project Structure](#-project-structure)
-- [Getting Started](#-getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Frontend Setup](#frontend-setup)
-  - [Backend Setup](#backend-setup)
-- [API Endpoints](#-api-endpoints)
-- [Technologies Used](#-technologies-used)
-  - [Frontend](#frontend)
-  - [Backend](#backend)
-- [How It Works](#-how-it-works)
-- [UI Components](#-ui-components)
-- [Pages](#-pages)
-- [Configuration](#-configuration)
-- [Known Issues](#-known-issues)
-- [Development Workflow](#-development-workflow)
-- [Contributing](#-contributing)
-- [License](#-license)
-- [Support](#-support)
+![LoanLens](https://img.shields.io/badge/LoanLens-AI%20Loan%20Analysis-0ea5e9?style=for-the-badge)
 
-## 🎯 Features
+---
 
-- **AI-Powered Loan Analysis**: Automatically extract and analyze loan documents using Google Gemini
-- **Fairness Scoring**: Get a 0-100 fairness score with detailed breakdowns of loan components
-- **Predatory Term Detection**: Identify potentially unfair loan terms and conditions
-- **Loan Comparison**: Upload multiple loan documents and compare them side-by-side
-- **PDF Export**: Generate professional PDF reports of your analysis
-- **Plain-English Summaries**: Get easy-to-understand explanations of complex loan terms
-- **Repayment Breakdowns**: Detailed calculations of monthly payments, total interest, and effective APR
+## ✨ Features
 
-## 🏗️ Project Structure
+- **📄 Document Upload** - Upload loan documents in PDF, DOC, DOCX, or image formats
+- **🤖 AI-Powered Analysis** - Automated extraction and analysis of loan terms using Gemini AI
+- **🔍 OCR Support** - Extract text from scanned documents and image-based PDFs
+- **⚠️ Predatory Term Detection** - Identify potentially harmful loan conditions
+- **📊 Fairness Scoring** - Get an objective score on how fair your loan terms are
+- **🔄 Loan Comparison** - Compare multiple loan offers side-by-side
+- **📥 PDF Reports** - Download detailed comparison reports
 
-```
-loanlens_frontend/                    # React + TypeScript frontend
-├── src/
-│   ├── components/                   # Reusable UI components
-│   │   ├── CircularProgress.tsx      # Fairness score visualization
-│   │   ├── ComparisonUpload.tsx      # Multi-file upload for comparison
-│   │   ├── FileUpload.tsx            # Single file upload
-│   │   ├── LoanComparisonCard.tsx    # Individual loan card
-│   │   ├── ResultCard.tsx            # Result display card
-│   │   └── ui/                       # shadcn/ui components
-│   ├── pages/                        # Page components
-│   │   ├── Home.tsx                  # Landing page
-│   │   ├── Upload.tsx                # Single loan analysis page
-│   │   ├── Compare.tsx               # Loan comparison page
-│   │   ├── Results.tsx               # Analysis results page
-│   │   └── RiskAssessment.tsx        # Risk assessment page
-│   ├── hooks/                        # Custom React hooks
-│   │   ├── useLoanAnalysis.ts        # Single loan analysis hook
-│   │   └── useComparisonAnalysis.ts  # Multi-loan comparison hook
-│   ├── lib/                          # Utility functions and APIs
-│   │   ├── loanAnalysisApi.ts        # Backend API calls
-│   │   ├── generateComparisonPDF.ts  # PDF generation for comparison
-│   │   └── generateResultsPDF.ts     # PDF generation for results
-│   └── data/                         # Mock data for development
-│
-loanlens-backend/                     # Flask backend
-├── app.py                            # Main Flask application
-├── requirements.txt                  # Python dependencies
-└── supabase/
-    └── functions/
-        └── analyze-loan/             # Supabase edge function for analysis
-```
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+| Technology | Purpose |
+|------------|---------|
+| **React 18** | UI library for building component-based interfaces |
+| **TypeScript** | Type-safe JavaScript for better developer experience |
+| **Vite** | Next-generation frontend build tool |
+| **Tailwind CSS** | Utility-first CSS framework |
+| **shadcn/ui** | High-quality, accessible UI components |
+| **React Router** | Client-side routing |
+| **TanStack Query** | Server state management and caching |
+| **Recharts** | Charting library for data visualization |
+| **Framer Motion** | Animation library (via Tailwind Animate) |
+
+### Backend (Lovable Cloud)
+| Technology | Purpose |
+|------------|---------|
+| **Supabase Edge Functions** | Serverless backend functions |
+| **Lovable AI (Gemini 2.5 Flash)** | Document analysis and OCR |
+| **Deno** | Runtime for edge functions |
+
+### PDF Generation
+| Technology | Purpose |
+|------------|---------|
+| **jsPDF** | PDF document generation |
+| **jsPDF-AutoTable** | Table formatting in PDFs |
+
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js (v18+)
-- Python 3.10+
-- Google Gemini API key
-- Bun (optional, but recommended for frontend)
+- Node.js 18+ and npm
+- A Lovable account (for backend features)
 
-### Frontend Setup
+### Installation
 
-```bash
-cd loanlens_frontend
+1. **Clone the repository**
+   ```bash
+   git clone <YOUR_GIT_URL>
+   cd <YOUR_PROJECT_NAME>
+   ```
 
-# Install dependencies
-npm install
-# or
-bun install
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-# Start development server
-npm run dev
-# or
-bun run dev
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
 
-# Build for production
-npm run build
+4. **Open your browser**
+   Navigate to `http://localhost:5173`
+
+---
+
+## 📁 Project Structure
+
+```
+├── src/
+│   ├── components/          # Reusable UI components
+│   │   ├── ui/              # shadcn/ui components
+│   │   ├── FileUpload.tsx   # Document upload component
+│   │   ├── ResultCard.tsx   # Analysis result display
+│   │   └── ...
+│   ├── hooks/               # Custom React hooks
+│   │   ├── useLoanAnalysis.ts
+│   │   └── useComparisonAnalysis.ts
+│   ├── lib/                 # Utility functions
+│   │   ├── loanAnalysisApi.ts
+│   │   └── generateComparisonPDF.ts
+│   ├── pages/               # Route pages
+│   │   ├── Home.tsx
+│   │   ├── Upload.tsx
+│   │   ├── Results.tsx
+│   │   ├── Compare.tsx
+│   │   └── ...
+│   └── integrations/        # External service integrations
+│       └── supabase/
+├── supabase/
+│   └── functions/           # Edge functions
+│       └── analyze-loan/    # AI document analysis
+└── public/                  # Static assets
 ```
 
-### Backend Setup
+---
 
-```bash
-cd loanlens-backend
-
-# Create virtual environment
-python -m venv venv
-
-# Activate virtual environment
-# On Windows:
-venv\Scripts\activate
-# On macOS/Linux:
-source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Create .env file with your Gemini API key
-echo GOOGLE_API_KEY=your_api_key_here > .env
-
-# Run the development server
-python app.py
-# Server runs on http://localhost:3001
-```
-
-## 📋 API Endpoints
-
-### `POST /analyze`
-
-Analyze a single loan document.
-
-**Request:**
-```json
-{
-  "file": "PDF file content"
-}
-```
-
-**Response:**
-```json
-{
-  "loanSummary": {
-    "loanAmount": 10000000,
-    "interestRate": 7.22,
-    "termMonths": 60,
-    "lender": "Hua Xia Bank Co., Ltd.",
-    "loanType": "Working Capital",
-    "summary": "Working capital loan details..."
-  },
-  "fairnessScore": {
-    "score": 50,
-    "breakdown": [
-      {"label": "Interest Rate", "score": 50},
-      {"label": "Fee Structure", "score": 50}
-    ]
-  },
-  "repaymentBreakdown": {
-    "monthlyPayment": 200000,
-    "totalRepayment": 12000000,
-    "totalInterest": 2000000,
-    "numberOfInstallments": 60,
-    "effectiveAPR": 7.5
-  },
-  "predatoryTerms": [
-    {
-      "term": "Term Name",
-      "description": "Description",
-      "severity": "high|medium|low"
-    }
-  ]
-}
-```
-
-## 🔧 Technologies Used
-
-### Frontend
-
-- **React 19** - UI library
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Styling
-- **shadcn/ui** - Component library
-- **React Router** - Navigation
-- **jsPDF + html2canvas** - PDF generation
-- **Lucide React** - Icons
-- **Sonner** - Toast notifications
-- **Vite** - Build tool
-
-### Backend
-
-- **Flask** - Web framework
-- **Google Gemini AI** - Document analysis
-- **PyMuPDF (fitz)** - PDF text extraction
-- **Pytesseract** - OCR for scanned documents
-- **Flask-CORS** - Cross-origin requests
-- **python-dotenv** - Environment configuration
-
-## 📊 How It Works
-
-1. **Document Upload**: User uploads a PDF loan document
-2. **Text Extraction**: Backend extracts text using PyMuPDF with OCR fallback
-3. **AI Analysis**: Google Gemini API analyzes the document and extracts:
-   - Loan summary (amount, rate, term, lender)
-   - Fairness score with breakdown
-   - Repayment calculations
-   - Predatory terms detection
-4. **Results Display**: Frontend displays analysis with visualizations
-5. **PDF Export**: Users can download professional PDF reports
-6. **Comparison**: Users can upload multiple documents and compare side-by-side
-
-## 🎨 UI Components
-
-- **CircularProgress**: Circular progress visualization for fairness scores
-- **ResultCard**: Reusable card component for displaying analysis results
-- **LoanComparisonCard**: Specialized card for comparing loans
-- **FileUpload**: Single file upload component with drag-and-drop
-- **ComparisonUpload**: Multi-file upload component (up to 5 files)
-
-## 📱 Pages
-
-- **Home**: Landing page with feature overview
-- **Upload**: Single loan analysis interface
-- **Compare**: Multi-loan comparison interface
-- **Results**: Detailed analysis results with visualizations
-- **RiskAssessment**: Risk assessment analysis page
-
-## ⚙️ Configuration
+## 🔧 Configuration
 
 ### Environment Variables
 
-**Backend (`.env`):**
-```env
-GOOGLE_API_KEY=your_gemini_api_key
-FLASK_ENV=development
-```
+The following environment variables are automatically configured by Lovable Cloud:
 
-**Frontend (`.env`):**
-```env
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_supabase_key
-```
+| Variable | Description |
+|----------|-------------|
+| `VITE_SUPABASE_URL` | Backend API URL |
+| `VITE_SUPABASE_PUBLISHABLE_KEY` | Public API key |
+| `VITE_SUPABASE_PROJECT_ID` | Project identifier |
 
-## 🐛 Known Issues
+---
 
-1. **CircularProgress NaN Error**: Fairness score may not display if calculation results in NaN. Ensure data validation in backend.
-2. **PDF Export**: Results page export feature may need updates to match comparison page implementation.
-3. **Python Version**: Python 3.10 is approaching end-of-life. Consider upgrading to Python 3.11+.
+## 📖 How It Works
 
-## 🔄 Development Workflow
+1. **Upload** - User uploads a loan document (PDF, image, or Word doc)
+2. **Extract** - System extracts text using direct parsing or OCR for images
+3. **Analyze** - AI analyzes the document for key terms and conditions
+4. **Score** - System calculates fairness scores and identifies risks
+5. **Report** - User receives detailed analysis with actionable insights
 
-1. Start the backend: `python app.py`
-2. Start the frontend: `npm run dev`
-3. Access the app at `http://localhost:5173`
+---
 
-## 📝 Contributing
+## 🎨 Design System
 
-When contributing, please:
+LoanLens uses a custom design system built on Tailwind CSS with:
 
-1. Follow the existing code style
-2. Add TypeScript types for new components
-3. Test API endpoints thoroughly
-4. Update this README if adding new features
+- **Primary Color**: Blue (`hsl(200, 100%, 45%)`)
+- **Semantic Tokens**: Consistent theming via CSS variables
+- **Dark Mode Ready**: Full dark mode support
+- **Responsive**: Mobile-first design approach
+
+---
 
 ## 📄 License
 
-This project is part of the LoanLens initiative by JoyNjoroge.
+This project is private and proprietary.
+
+---
+
+## 🤝 Contributing
+
+This project is managed through [Lovable](https://lovable.dev). To contribute:
+
+1. Make changes through the Lovable editor, or
+2. Clone the repo, make changes, and push to trigger sync
+
+---
 
 ## 📞 Support
 
-For issues or questions, please refer to the project repository or contact the development team.
+For questions or issues, please contact the project maintainers.
 
 ---
-**Version:** 0.0.0  
-**Last Updated:** January 15, 2026
+
+Built with ❤️ using [Lovable](https://lovable.dev)
