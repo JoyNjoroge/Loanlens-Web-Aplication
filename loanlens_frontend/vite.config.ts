@@ -4,13 +4,14 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
+  base: "./",   // THIS fixes relative paths for nested deploys
   plugins: [
-    react(),          // handles JSX + TSX
-    tsconfigPaths(),  // handles TS path aliases if you use them
-    tailwindcss(),    // your existing Tailwind plugin
+    react(),
+    tsconfigPaths(),
+    tailwindcss(),
   ],
   build: {
-    outDir: 'dist',   // Netlify needs this as publish folder
+    outDir: 'dist',
     rollupOptions: {
       output: {
         entryFileNames: `[name].js`,
@@ -18,8 +19,5 @@ export default defineConfig({
         assetFileNames: `[name]-[hash][extname]`,
       },
     },
-  },
-  server: {
-    port: 5173,       // optional, for local dev
   },
 })
