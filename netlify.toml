@@ -1,8 +1,8 @@
 [build]
   # Run npm build inside the frontend folder
-  command = "npm --prefix loanlens_frontend run build"
+  command = "npm run build"
   # Publish the built files
-  publish = "loanlens_frontend/dist"
+  publish = "dist"
 
 # Redirect SPA routes to index.html
 [[redirects]]
