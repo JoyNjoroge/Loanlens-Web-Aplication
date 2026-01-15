@@ -46,7 +46,7 @@ export async function analyzeLoanDocument(file: File): Promise<LoanAnalysisResul
   formData.append('documentType', file.type);
 
   try {
-    const response = await fetch('http://localhost:3001/analyze-loan', {
+    const response = await fetch('https://bravemackerel-loanlens.hf.space/analyze-loan', {
       method: 'POST',
       body: formData,
     });
