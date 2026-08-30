@@ -207,7 +207,7 @@ Document text:
 {text_preview}"""
         
         print('Calling Gemini API for analysis...')
-        model = GenerativeModel('gemini-2.0-flash')
+        model = GenerativeModel('gemini-3.6-flash')
         response = model.generate_content(prompt)
         content = response.text
         
